@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<title>WebGL Gaussian Splat Viewer</title>
+		<link rel="stylesheet" href="styles.css">
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+		/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta
+			name="apple-mobile-web-app-status-bar-style"
+			content="black-translucent"
+		/>
+	</head>
+	<body>
+		<div id="progress"></div>
+		<div id="message"></div>
+		<div class="scene" id="spinner">
+			<div class="cube-wrapper">
+				<div class="cube">
+					<div class="cube-faces">
+						<div class="cube-face bottom"></div>
+						<div class="cube-face top"></div>
+						<div class="cube-face left"></div>
+						<div class="cube-face right"></div>
+						<div class="cube-face back"></div>
+						<div class="cube-face front"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<canvas id="canvas"></canvas>
+
+		<div id="quality">
+			<span id="fps"></span>
+		</div>
+		<div id="caminfo">
+			<span id="camid"></span>
+		</div>
+		<script src="main.js"></script>
+	</body>
+</html>

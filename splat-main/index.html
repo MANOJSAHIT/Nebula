@@ -1,44 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-	<head>
-		<title>WebGL Gaussian Splat Viewer</title>
-		<link rel="stylesheet" href="styles.css">
-		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
-		/>
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta
-			name="apple-mobile-web-app-status-bar-style"
-			content="black-translucent"
-		/>
-	</head>
-	<body>
-		<div id="progress"></div>
-		<div id="message"></div>
-		<div class="scene" id="spinner">
-			<div class="cube-wrapper">
-				<div class="cube">
-					<div class="cube-faces">
-						<div class="cube-face bottom"></div>
-						<div class="cube-face top"></div>
-						<div class="cube-face left"></div>
-						<div class="cube-face right"></div>
-						<div class="cube-face back"></div>
-						<div class="cube-face front"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<canvas id="canvas"></canvas>
-
-		<div id="quality">
-			<span id="fps"></span>
-		</div>
-		<div id="caminfo">
-			<span id="camid"></span>
-		</div>
-		<script src="main.js"></script>
-	</body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babylon.js Scene</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+	<script src="https://cdn.babylonjs.com/babylon.js"></script>
+<script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+</head>
+<body>
+	
+    <div class="image-slider">
+        <section class="slider__content">
+            <button type="button" class="slider-control--button prev-button">
+                <svg width="16" height="16" fill="currentColor" class="icon arrow-left-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+                </svg>
+            </button>
+            <main class="image-display"></main>
+            <button type="button" class="slider-control--button next-button">
+                <svg width="16" height="16" fill="currentColor" class="icon arrow-right-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                </svg>
+            </button>
+        </section>
+        <nav class="slider-navigation">
+            <button class="nav-button" aria-selected="true" data-category="transportation">
+                <img class="thumbnail" src="https://static.vecteezy.com/system/resources/previews/008/084/549/non_2x/transport-vehicle-and-logistics-concept-3d-render-free-photo.JPG" alt="Thumbnail 1" />
+            </button>
+            <button class="nav-button" aria-selected="false" data-category="tourism">
+                <img class="thumbnail" src="https://thumbs.dreamstime.com/b/travel-trip-vacation-tourism-mockup-tools-close-up-compass-glass-water-note-pad-pen-toy-airplane-touristic-map-59549959.jpg" alt="Thumbnail 2" />
+            </button>
+            <button class="nav-button" aria-selected="false" data-category="objects">
+                <img class="thumbnail" src="https://thumbs.dreamstime.com/b/miscellaneous-work-tools-background-made-42401159.jpg" alt="Thumbnail 3" />
+            </button>
+        </nav>
+    </div>
+    <script src="app.js"></script>
+</body>
 </html>

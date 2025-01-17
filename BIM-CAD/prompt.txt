@@ -1,0 +1,11 @@
+{
+  "task": "Analyze the attached floor plan image and extract the following information:",
+  "details": [
+    {
+      "room_dimensions_and_positions": "For each room, identify its name, dimensions (length and width), and position (x, y coordinates of the center point). Example: {'Living': {'length': 12, 'width': 14, 'x': 20, 'y': 10}}",
+      "wall_lengths_and_positions": "Measure the lengths of all exterior and interior walls, and provide their positions (x, y coordinates of the starting point and ending point). Example: {'Exterior Wall 1': {'length': 56, 'start_x': 0, 'start_y': 0, 'end_x': 56, 'end_y': 0}}", 
+      "door_window_locations_and_dimensions": "Identify the locations of doors and windows, including their approximate dimensions and positions (x, y coordinates of the center point). Example: {'Door 1': {'position': {'x': 15, 'y': 5}, 'width': 3}, 'Window 1': {'position': {'x': 30, 'y': 0}, 'width': 4}}" 
+    }
+  ],
+  "output_format": "JSON"
+}

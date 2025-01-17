@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D House Model</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+</head>
+
+{
+  "task": "Analyze the attached floor plan image and extract the following information:",
+  "details": [
+    {
+      "room_dimensions": "For each room, identify its name and dimensions (length and width).  Example: {'Living': {'length': 12, 'width': 14}}",
+      "wall_lengths": "Measure the lengths of all exterior and interior walls. Example: {'Exterior Wall 1': 56, 'Interior Wall 1': 12}",
+      "door_window_locations": "Identify the locations of doors and windows, including their approximate dimensions. Example: {'Door 1': {'position': 'Between Living and Foyer', 'width': 3}, 'Window 1': {'position': 'On Exterior Wall 1', 'width': 4}}"
+    }
+  ],
+  "output_format": "JSON"
+}
+
+
+
+
+
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.144/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.144/examples/js/controls/OrbitControls.js"></script>
+
+    <script type="module">
+        // import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.144/build/three.min.js';
+        // import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/controls/OrbitControls.js';
+        // Scene Setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Orbit Controls
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(10, 10, 10);
+        scene.add(directionalLight);
+
+        // Floor
+        const floorGeometry = new THREE.PlaneGeometry(50, 50);
+        const floorMaterial = new THREE.MeshStandardMaterial({ color: 0xaaaaaa });
+        const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+        floor.rotation.x = -Math.PI / 2;
+        scene.add(floor);
+
+        // Room Data
+        const houseData = {
+            "Bedroom 1": { length: 11.0833, width: 9.75 },
+            "Living Room": { length: 17, width: 12.0833 },
+            "Bedroom 2": { length: 12, width: 11.4167 }
+        };
+
+        const wallData = {
+            "Exterior Wall 1": 26,
+            "Exterior Wall 2": 36,
+            "Exterior Wall 3": 29,
+            "Exterior Wall 4": 40
+        };
+
+        const doorWindowData = {
+            "Door 1": { position: "1", width: 3 },
+            "Window 1": { position: "2", width: 2.5 },
+            "Window 2": { position: "2", width: 2.5 },
+            "Window 3": { position: "4", width: 6 }
+        };
+
+        function createRoom(length, width, height = 10, color = 0xffffff) {
+            const geometry = new THREE.BoxGeometry(length, height, width);
+            const material = new THREE.MeshStandardMaterial({ color, side: THREE.DoubleSide });
+            const room = new THREE.Mesh(geometry, material);
+            return room;
+        }
+
+        // Add Rooms
+        let xOffset = 0;
+        for (const [roomName, dimensions] of Object.entries(houseData)) {
+            const room = createRoom(dimensions.length, dimensions.width);
+            room.position.set(xOffset + dimensions.length / 2, 5, 0);
+            xOffset += dimensions.length + 2; // Add spacing between rooms
+            scene.add(room);
+        }
+
+        // Add Walls, Doors, and Windows (Mock Implementation)
+        function createWall(length, height = 10, thickness = 0.5, color = 0x8b8b8b) {
+            const geometry = new THREE.BoxGeometry(length, height, thickness);
+            const material = new THREE.MeshStandardMaterial({ color });
+            return new THREE.Mesh(geometry, material);
+        }
+
+        for (const [wallName, length] of Object.entries(wallData)) {
+            const wall = createWall(length);
+            wall.position.set(0, 5, -length / 2);
+            scene.add(wall);
+        }
+
+        // Camera Position
+        camera.position.set(30, 20, 30);
+        controls.update();
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle Window Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>

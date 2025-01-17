@@ -1,0 +1,177 @@
+{
+  "IfcProject": {
+    "GlobalId": "Project_1",
+    "Name": "Building Visualization",
+    "Description": "3D representation of building based on input JSON data.",
+    "IfcBuilding": {
+      "GlobalId": "Building_1",
+      "Name": "Main Building",
+      "Description": "Building structure with rooms and walls.",
+      "IfcBuildingStorey": {
+        "GlobalId": "Storey_1",
+        "Name": "Ground Floor",
+        "Description": "Ground floor layout.",
+        "IfcSpaces": [
+          {
+            "GlobalId": "Space_LivingRoom",
+            "Name": "Living Room",
+            "ObjectType": "IfcSpace",
+            "Dimensions": {
+              "Length": 16,
+              "Width": 11
+            },
+            "Position": {
+              "X": 142,
+              "Y": 275
+            }
+          },
+          {
+            "GlobalId": "Space_DiningRoom",
+            "Name": "Dining Room",
+            "ObjectType": "IfcSpace",
+            "Dimensions": {
+              "Length": 12,
+              "Width": 11
+            },
+            "Position": {
+              "X": 480,
+              "Y": 205
+            }
+          },
+          {
+            "GlobalId": "Space_Kitchen",
+            "Name": "Kitchen",
+            "ObjectType": "IfcSpace",
+            "Dimensions": {
+              "Length": 12,
+              "Width": 10.67
+            },
+            "Position": {
+              "X": 708,
+              "Y": 205
+            }
+          },
+          {
+            "GlobalId": "Space_Bathroom",
+            "Name": "Bathroom",
+            "ObjectType": "IfcSpace",
+            "Dimensions": {
+              "Length": 11.5,
+              "Width": 10
+            },
+            "Position": {
+              "X": 115,
+              "Y": 500
+            }
+          },
+          {
+            "GlobalId": "Space_Bedroom",
+            "Name": "Bedroom",
+            "ObjectType": "IfcSpace",
+            "Dimensions": {
+              "Length": 12,
+              "Width": 13.83
+            },
+            "Position": {
+              "X": 708,
+              "Y": 500
+            }
+          },
+          {
+            "GlobalId": "Space_StudyOffice",
+            "Name": "Study/Office",
+            "ObjectType": "IfcSpace",
+            "Dimensions": {
+              "Length": 8.17,
+              "Width": 13.17
+            },
+            "Position": {
+              "X": 708,
+              "Y": 765
+            }
+          }
+        ],
+        "IfcWalls": [
+          {
+            "GlobalId": "Wall_1",
+            "Name": "Exterior Wall 1",
+            "Length": 38,
+            "Start": {
+              "X": 50,
+              "Y": 100
+            },
+            "End": {
+              "X": 50,
+              "Y": 480
+            }
+          },
+          {
+            "GlobalId": "Wall_2",
+            "Name": "Exterior Wall 2",
+            "Length": 13,
+            "Start": {
+              "X": 50,
+              "Y": 480
+            },
+            "End": {
+              "X": 180,
+              "Y": 480
+            }
+          },
+          {
+            "GlobalId": "Wall_3",
+            "Name": "Exterior Wall 3",
+            "Length": 16.5,
+            "Start": {
+              "X": 180,
+              "Y": 480
+            },
+            "End": {
+              "X": 180,
+              "Y": 645
+            }
+          },
+          {
+            "GlobalId": "Wall_4",
+            "Name": "Exterior Wall 4",
+            "Length": 34,
+            "Start": {
+              "X": 180,
+              "Y": 645
+            },
+            "End": {
+              "X": 520,
+              "Y": 645
+            }
+          },
+          {
+            "GlobalId": "Wall_5",
+            "Name": "Exterior Wall 5",
+            "Length": 38,
+            "Start": {
+              "X": 850,
+              "Y": 100
+            },
+            "End": {
+              "X": 850,
+              "Y": 480
+            }
+          },
+          {
+            "GlobalId": "Wall_6",
+            "Name": "Exterior Wall 6",
+            "Length": 34,
+            "Start": {
+              "X": 520,
+              "Y": 850
+            },
+            "End": {
+              "X": 850,
+              "Y": 850
+            }
+          }
+        ]
+      }
+    }
+  }
+}

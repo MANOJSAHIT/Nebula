@@ -1,8 +1,6 @@
 window.addEventListener("DOMContentLoaded", async function () {
     const params = new URLSearchParams(window.location.search);
     const category = params.get("category");
-
-    // Define categories and their corresponding splat files
     const splats = {
         transportation: [
             "bicycle.splat", 
@@ -23,22 +21,17 @@ window.addEventListener("DOMContentLoaded", async function () {
 
     let currentIndex = 0;
     let gs;
-
-    // Ensure the category is valid
     if (!splats[category]) {
         console.error("Invalid category");
         return;
     }
 
-    // Set up the Babylon.js engine and scene
     var canvas = document.getElementById("renderCanvas");
     var engine = new BABYLON.Engine(canvas, true);
 
     var createScene = async function () {
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color3(0.1, 0.1, 0.1);
-
-        // Create and position a free camera
         var camera = new BABYLON.ArcRotateCamera(
             "camera1", 
             -0.8, 
@@ -50,13 +43,9 @@ window.addEventListener("DOMContentLoaded", async function () {
         camera.wheelPrecision = 100;
         camera.inertia = 0.97;
         camera.attachControl(canvas, true);
-
-        // Function to load .splat files
         const loadGS = async function () {
-            // Dispose the previous model if any
             if (gs) gs.dispose();
 
-            // Load the next .splat based on the current index
             await BABYLON.SceneLoader.ImportMeshAsync(
                 null, 
                 "https://splatfilesnebula.s3.us-east-1.amazonaws.com/", 
@@ -66,7 +55,6 @@ window.addEventListener("DOMContentLoaded", async function () {
                 gs = result.meshes[0];
             });
 
-            // Adjust camera settings based on the model
             const cameraSettings = [
                 { radius: 5, alpha: -0.8 },
                 { radius: 5, alpha: 2.9 },
@@ -78,10 +66,8 @@ window.addEventListener("DOMContentLoaded", async function () {
             camera.alpha = cameraSettings[currentIndex].alpha;
         };
 
-        // Load initial model
         await loadGS();
 
-        // GUI setup
         var guiLayer = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("guiLayer");
         var guiContainer = new BABYLON.GUI.Grid();
         guiContainer.name = "uiGrid";
@@ -118,7 +104,6 @@ window.addEventListener("DOMContentLoaded", async function () {
         guiContainer.addControl(leftBtn, 0, 0);
         guiContainer.addControl(rightBtn, 0, 2);
 
-        // Display loading screen while loading assets
         engine.displayLoadingUI();
         scene.executeWhenReady(function () {
             engine.hideLoadingUI();
@@ -132,8 +117,6 @@ window.addEventListener("DOMContentLoaded", async function () {
 
         return scene;
     };
-
-    // Create scene and run the render loop
     var scene = await createScene();
     engine.runRenderLoop(function () {
         scene.render();
